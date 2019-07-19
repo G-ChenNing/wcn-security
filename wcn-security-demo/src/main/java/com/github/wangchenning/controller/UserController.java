@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.github.wangchenning.dto.User;
 import com.github.wangchenning.dto.UserQueryCondition;
 import com.github.wangchenning.exception.UserNotExistException;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
@@ -70,6 +72,7 @@ public class UserController {
 
     @JsonView(User.UserSimpleView.class)
     @GetMapping
+    @ApiOperation(value = "用户查询服务")
     public List<User> query(UserQueryCondition condition, @PageableDefault(page = 1, size = 17, sort = "username.desc") Pageable pageable) {
         System.out.println(ReflectionToStringBuilder.toString(condition, ToStringStyle.MULTI_LINE_STYLE));
         System.out.println(pageable.getPageNumber());
@@ -84,7 +87,7 @@ public class UserController {
 
     @JsonView(User.UserDetailView.class)
     @GetMapping("/{id:\\d+}")
-    public User getInfo(@PathVariable("id") String id) {
+    public User getInfo(@ApiParam("用户id") @PathVariable("id") String id) {
         System.out.println("进入getInfo服务");
         User user = new User();
         user.setUsername("wcn");
