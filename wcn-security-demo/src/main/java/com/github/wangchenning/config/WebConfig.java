@@ -15,13 +15,13 @@ import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-//    @Autowired
-//    private TimeInterceptor timeInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(timeInterceptor);
-//    }
+    @Autowired
+    private TimeInterceptor timeInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(timeInterceptor);
+    }
 
 
 //    @Override
