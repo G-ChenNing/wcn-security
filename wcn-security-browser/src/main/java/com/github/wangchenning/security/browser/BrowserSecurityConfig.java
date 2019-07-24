@@ -1,5 +1,7 @@
 package com.github.wangchenning.security.browser;
 
+import com.github.wangchenning.security.browser.authentication.WcnAuthenticationFailHandler;
+import com.github.wangchenning.security.browser.authentication.WcnAuthenticationSuccessHandler;
 import com.github.wangchenning.security.core.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
+    @Autowired
+    private WcnAuthenticationSuccessHandler wcnAuthenticationSuccessHandler;
+    @Autowired
+    private WcnAuthenticationFailHandler wcnAuthenticationFailHandler;
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -20,6 +26,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/authentication/form")
+                .successHandler(wcnAuthenticationSuccessHandler)
+                .failureHandler(wcnAuthenticationFailHandler)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require",
