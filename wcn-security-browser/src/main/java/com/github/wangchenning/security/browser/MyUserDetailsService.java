@@ -12,11 +12,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MyUserDetauksService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    private Logger logger = LoggerFactory.getLogger(MyUserDetauksService.class);
+    private Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
