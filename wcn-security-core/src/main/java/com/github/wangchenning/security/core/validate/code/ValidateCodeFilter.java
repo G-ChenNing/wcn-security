@@ -15,6 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 
 public class ValidateCodeFilter extends OncePerRequestFilter {
 
@@ -82,4 +86,21 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     public void setSessionStrategy(SessionStrategy sessionStrategy) {
         this.sessionStrategy = sessionStrategy;
     }
+
+//    public static void main(String[] args) {
+//        LocalDateTime localDateTime = LocalDateTime.now().atZone(ZoneId.systemDefault()).toLocalDateTime();
+//        System.out.println(LocalDateTime.parse("2019-10-25 00:01:02", DateTimeFormatter.ofPattern("y-MM-d HH:mm:ss"))
+//                .with(ChronoField.DAY_OF_MONTH, LocalDateTime.parse("2019-10-25 00:01:02", DateTimeFormatter.ofPattern("y-MM-d HH:mm:ss")).range(ChronoField.DAY_OF_MONTH).getMinimum()));
+//        System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("y-MMM-d HH:mm:ss")));
+//        System.out.println(LocalDateTime.of(2019,9,1,0,0,5).format(DateTimeFormatter.ofPattern("y-MM-dd HH:mm:ss")));
+//
+//        System.out.println(localDateTime.toLocalDate().withDayOfMonth(2).format(DateTimeFormatter.ofPattern("y-MM-dd")));
+//        System.out.println(localDateTime.toLocalTime().withHour(17));
+//
+//        System.out.println(localDateTime.toLocalTime().withHour(17).withMinute((int)ChronoField.MINUTE_OF_HOUR.range().getMaximum()));
+//
+//        System.out.println(LocalDateTime.now().plusYears(-1));
+//
+//
+//    }
 }
