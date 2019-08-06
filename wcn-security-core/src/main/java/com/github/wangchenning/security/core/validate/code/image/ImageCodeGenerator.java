@@ -1,7 +1,9 @@
-package com.github.wangchenning.security.core.validate.code;
+package com.github.wangchenning.security.core.validate.code.image;
 
 import com.github.wangchenning.security.core.properties.SecurityProperties;
+import com.github.wangchenning.security.core.validate.code.ValidateCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -12,8 +14,10 @@ import java.util.Random;
 /**
  * @author Musk
  */
-public class ImageCodeGenerator implements ValidateCodeGenerator{
+@Component("imageValidateCodeGenerator")
+public class ImageCodeGenerator implements ValidateCodeGenerator {
 
+    @Autowired
     private SecurityProperties securityProperties;
 
     @Override

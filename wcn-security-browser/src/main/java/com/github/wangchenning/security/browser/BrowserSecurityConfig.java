@@ -2,24 +2,24 @@ package com.github.wangchenning.security.browser;
 
 import com.github.wangchenning.security.browser.authentication.WcnAuthenticationFailHandler;
 import com.github.wangchenning.security.browser.authentication.WcnAuthenticationSuccessHandler;
+import com.github.wangchenning.security.core.properties.SecurityConstants;
 import com.github.wangchenning.security.core.properties.SecurityProperties;
-import com.github.wangchenning.security.core.validate.code.ValidateCodeFilter;
+import com.github.wangchenning.security.core.validate.code.ValidateCodeSecurityConfig;
+import com.github.wangchenning.security.core.authentication.AbstractChannelSecurityConfig;
+import com.github.wangchenning.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
+public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     @Autowired
     private SecurityProperties securityProperties;
     @Autowired
@@ -30,32 +30,34 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     @Autowired
     private MyUserDetailsService userDetailsService;
+    @Autowired
+    private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
+    @Autowired
+    private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
-        validateCodeFilter.setAuthenticationFailureHandler(wcnAuthenticationFailHandler);
-        validateCodeFilter.setSecurityProperties(securityProperties);
-        validateCodeFilter.afterPropertiesSet();
+        applyPasswordAuthenticationConfig(http);
+
         //        http.httpBasic()
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin()
-                .loginPage("/authentication/require")
-                .loginProcessingUrl("/authentication/form")
-                .successHandler(wcnAuthenticationSuccessHandler)
-                .failureHandler(wcnAuthenticationFailHandler)
+        http.apply(validateCodeSecurityConfig)
+                .and()
+                .apply(smsCodeAuthenticationSecurityConfig)
                 .and().rememberMe()
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                 .userDetailsService(userDetailsService)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/authentication/require", "/code/image",
-                        securityProperties.getBrowser().getLoginPage()).permitAll()
+                .antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                        SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
+                        securityProperties.getBrowser().getLoginPage(),
+                        SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+        .apply(smsCodeAuthenticationSecurityConfig);
     }
 
     @Bean
