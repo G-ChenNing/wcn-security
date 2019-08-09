@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * @author Musk
  */
-@Component("imageValidateCodeGenerator")
+//@Component("imageValidateCodeGenerator")
 public class ImageCodeGenerator implements ValidateCodeGenerator {
 
     @Autowired
@@ -26,8 +26,6 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
                 securityProperties.getCode().getImage().getWidth());
         int height = ServletRequestUtils.getIntParameter(request.getRequest(), "height",
                 securityProperties.getCode().getImage().getHeight());
-//        int width = 67;
-//        int height = 23;
 
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
@@ -48,7 +46,7 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
         }
 
         String sRand = "";
-        for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {               //securityProperties.getCode().getImage().getLength()
+        for (int i = 0; i < securityProperties.getCode().getImage().getLength(); i++) {
             String rand = String.valueOf(random.nextInt(10));
             sRand += rand;
             g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
