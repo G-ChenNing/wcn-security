@@ -56,8 +56,7 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .csrf().disable()
-        .apply(smsCodeAuthenticationSecurityConfig);
+                .csrf().disable();
     }
 
     @Bean
