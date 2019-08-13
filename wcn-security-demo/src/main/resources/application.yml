@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: smartcity
-    password: smartcity
-    url: jdbc:mysql://192.168.30.250:3307/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: wcnwcn175
+    url: jdbc:mysql://cl0505.club:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useSSL=false
   session:
     store-type: none
 #  security:
@@ -14,8 +14,12 @@ server:
   port: 80
 
 
-#wcn:
-#  security:
+wcn:
+  security:
+    social:
+      qq:
+        app-id:
+        app-secret:
 #    code:
 #      image:
 #        length: 6

@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.github.wangchenning.security.core.SecurityCoreConfig
+com.github.wangchenning.security.core.SecurityCoreConfig,\
+com.github.wangchenning.security.core.properties.QQProperties
