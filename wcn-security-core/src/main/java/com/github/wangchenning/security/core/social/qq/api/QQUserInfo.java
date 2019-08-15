@@ -6,14 +6,21 @@ public class QQUserInfo {
     private String msg;
     private String openId;
     private String is_lost;
-    private String province;
     private String nickname;
+    private String gender;
+    private String province;
+    private String city;
+    private String year;
+    private String constellation;
+
     private String figureurl;
     private String figureurl_1;
     private String figureurl_2;
     private String figureurl_qq_1;
     private String figureurl_qq_2;
-    private String gender;
+    private String figureurl_qq;
+
+    private String figureurl_type;
     private String is_yellow_vip;
     private String vip;
     private String yellow_vip_level;
@@ -154,5 +161,45 @@ public class QQUserInfo {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getConstellation() {
+        return constellation;
+    }
+
+    public void setConstellation(String constellation) {
+        this.constellation = constellation;
+    }
+
+    public String getFigureurl_qq() {
+        return figureurl_qq;
+    }
+
+    public void setFigureurl_qq(String figureurl_qq) {
+        this.figureurl_qq = figureurl_qq;
+    }
+
+    public String getFigureurl_type() {
+        return figureurl_type;
+    }
+
+    public void setFigureurl_type(String figureurl_type) {
+        this.figureurl_type = figureurl_type;
     }
 }

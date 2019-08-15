@@ -26,6 +26,18 @@
         <module>wcn-security-app</module>
         <module>wcn-security-demo</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
     <dependencyManagement>
         <dependencies>
 <!--            <dependency>-->

@@ -1,11 +1,16 @@
 package com.github.wangchenning.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.wangchenning.interceptor.TimeInterceptor;
 import com.github.wangchenning.webfilter.TimeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -40,5 +45,5 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setOrder(1);
         return filterRegistrationBean;
     }
-    
+
 }

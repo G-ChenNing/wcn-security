@@ -3,7 +3,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: wcnwcn175
-    url: jdbc:mysql://cl0505.club:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&useSSL=false
+#    url: jdbc:mysql://cl0505.club:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://106.37.127.192:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
   session:
     store-type: none
 #  security:
@@ -11,20 +12,23 @@ spring:
 #      name: admin
 #      password: 123456
 server:
-  port: 80
+  port: 8000
 
 
 wcn:
   security:
     social:
       qq:
-        app-id:
-        app-secret:
+        app-id: 101760025
+        app-secret: 6739fd15d80a02f2427045742194451f
+        providerId: callback.do
+      filterProcessUrl: /qqLogin
 #    code:
 #      image:
 #        length: 6
 #        width: 100
 #        url: /user,/user/*
-#    browser:
+    browser:
+      signUpUrl: /demo-signUp.html
 #      loginPage: /demo-signIn.html
 #      loginType: REDIRECT

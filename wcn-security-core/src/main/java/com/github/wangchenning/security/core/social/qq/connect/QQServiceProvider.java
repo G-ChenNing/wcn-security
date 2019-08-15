@@ -3,8 +3,6 @@ package com.github.wangchenning.security.core.social.qq.connect;
 import com.github.wangchenning.security.core.social.qq.api.QQ;
 import com.github.wangchenning.security.core.social.qq.api.QQImpl;
 import org.springframework.social.oauth2.AbstractOAuth2ServiceProvider;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Template;
 
 public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
 
@@ -16,7 +14,8 @@ public class QQServiceProvider extends AbstractOAuth2ServiceProvider<QQ> {
 
 
     public QQServiceProvider(String appId, String appSecret) {
-        super(new OAuth2Template(appId, appSecret, URL_AUTHORIZE, URL_ACCESS_TOKEN));
+        super(new QQOAuth2Template(appId, appSecret, URL_AUTHORIZE, URL_ACCESS_TOKEN));
+        this.appId = appId;
     }
 
     @Override
