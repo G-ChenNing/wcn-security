@@ -1,7 +1,19 @@
+/**
+ * 
+ */
 package com.github.wangchenning.security.core.social.weixin.api;
 
-import com.github.wangchenning.security.core.social.qq.api.QQUserInfo;
-
+/**
+ * 微信API调用接口
+ * 
+ * @author zhailiang
+ *
+ */
 public interface Weixin {
-    WeixinUserInfo getUserInfo(String openId);
+
+	/* (non-Javadoc)
+	 * @see com.ymt.pz365.framework.security.social.api.SocialUserProfileService#getUserProfile(java.lang.String)
+	 */
+	WeixinUserInfo getUserInfo(String openId);
+	
 }

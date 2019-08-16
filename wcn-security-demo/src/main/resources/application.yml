@@ -12,15 +12,17 @@ spring:
 #      name: admin
 #      password: 123456
 server:
-  port: 8000
+  port: 80
 
 
 wcn:
   security:
     social:
       qq:
-        app-id: 101760025
-        app-secret: 6739fd15d80a02f2427045742194451f
+        app-id: 101766980
+        app-secret: 6e3ccf997f3a924de88804e86401ed0b
+#        app-id: 101760025
+#        app-secret: 6739fd15d80a02f2427045742194451f
         providerId: callback.do
       weixin:
         app-id: wxd99431bbff8305a0
