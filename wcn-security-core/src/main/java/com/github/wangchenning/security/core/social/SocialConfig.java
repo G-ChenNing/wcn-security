@@ -10,9 +10,11 @@ import org.springframework.social.UserIdSource;
 import org.springframework.social.config.annotation.EnableSocial;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.ConnectionSignUp;
 import org.springframework.social.connect.UsersConnectionRepository;
 
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.connect.web.WcnProviderSignInUtils;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
 import org.springframework.social.security.SpringSocialConfigurer;
 
@@ -25,11 +27,16 @@ public class SocialConfig extends SocialConfigurerAdapter {
     private DataSource dataSource;
     @Autowired
     private SecurityProperties securityProperties;
+    @Autowired(required = false)
+    private ConnectionSignUp connectionSignUp;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository jdbcUsersConnectionRepository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
         jdbcUsersConnectionRepository.setTablePrefix("t_wcn_");
+//        if (connectionSignUp != null) {
+//            jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
+//        }
         return jdbcUsersConnectionRepository;
     }
 
@@ -49,5 +56,10 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Bean
     public ProviderSignInUtils providerSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
         return new ProviderSignInUtils(connectionFactoryLocator,getUsersConnectionRepository(connectionFactoryLocator));
+    }
+
+    @Bean
+    public WcnProviderSignInUtils wcnProviderSignInUtils(ConnectionFactoryLocator connectionFactoryLocator) {
+        return new WcnProviderSignInUtils(connectionFactoryLocator,getUsersConnectionRepository(connectionFactoryLocator));
     }
 }

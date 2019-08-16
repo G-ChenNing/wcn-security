@@ -16,6 +16,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.web.ProviderSignInUtils;
+import org.springframework.social.connect.web.WcnProviderSignInUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -37,6 +38,9 @@ public class BrowserSecurityController {
     private SecurityProperties securityProperties;
     @Autowired
     private ProviderSignInUtils providerSignInUtils;
+    @Autowired
+    private WcnProviderSignInUtils wcnProviderSignInUtils;
+
     /**
      * 当需要身份认证时跳转到这里
      * @param request
@@ -60,7 +64,8 @@ public class BrowserSecurityController {
     @GetMapping("/social/user")
     public SocialUserInfo getSocialInfo(HttpServletRequest httpRequest) {
         SocialUserInfo socialUserInfo = new SocialUserInfo();
-        Connection<?> connectionFromSession = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(httpRequest));
+//        Connection<?> connectionFromSession = providerSignInUtils.getConnectionFromSession(new ServletWebRequest(httpRequest));
+        Connection<?> connectionFromSession = wcnProviderSignInUtils.getConnectionFromSession(new ServletWebRequest(httpRequest));
         socialUserInfo.setProviderId(connectionFromSession.getKey().getProviderId());
         socialUserInfo.setProviderUserId(connectionFromSession.getKey().getProviderUserId());
         socialUserInfo.setNickname(connectionFromSession.getDisplayName());
