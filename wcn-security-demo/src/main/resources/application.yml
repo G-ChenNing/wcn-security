@@ -22,6 +22,9 @@ wcn:
         app-id: 101760025
         app-secret: 6739fd15d80a02f2427045742194451f
         providerId: callback.do
+      weixin:
+        app-id: wxd99431bbff8305a0
+        app-secret: 60f78681d063590a469f1b297feff3c4
       filterProcessUrl: /qqLogin
 #    code:
 #      image:
