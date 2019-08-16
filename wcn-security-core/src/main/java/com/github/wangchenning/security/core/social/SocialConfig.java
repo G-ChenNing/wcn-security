@@ -34,9 +34,9 @@ public class SocialConfig extends SocialConfigurerAdapter {
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository jdbcUsersConnectionRepository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
         jdbcUsersConnectionRepository.setTablePrefix("t_wcn_");
-//        if (connectionSignUp != null) {
-//            jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
-//        }
+        if (connectionSignUp != null) {
+            jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
+        }
         return jdbcUsersConnectionRepository;
     }
 

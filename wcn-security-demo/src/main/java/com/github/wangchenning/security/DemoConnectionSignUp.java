@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DemoConnectionSignUp implements ConnectionSignUp {
+
     @Override
     public String execute(Connection<?> connection) {
         return connection.getDisplayName();
