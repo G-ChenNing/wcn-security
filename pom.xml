@@ -26,6 +26,12 @@
         <module>wcn-security-app</module>
         <module>wcn-security-demo</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>

@@ -1,11 +1,13 @@
 package com.github.wangchenning.validation;
 
 import com.github.wangchenning.service.HelloService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+@Slf4j
 public class MyConstraintValidtor implements ConstraintValidator<MyConstraint,Object> {
     @Autowired
     private HelloService helloService;
@@ -19,6 +21,6 @@ public class MyConstraintValidtor implements ConstraintValidator<MyConstraint,Ob
 
     @Override
     public void initialize(MyConstraint constraintAnnotation) {
-        System.out.println("my validtor initialize");
+        log.info("my validtor initialize");
     }
 }
