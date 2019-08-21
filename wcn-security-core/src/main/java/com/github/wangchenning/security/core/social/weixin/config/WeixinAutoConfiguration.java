@@ -5,14 +5,18 @@ package com.github.wangchenning.security.core.social.weixin.config;
 
 import com.github.wangchenning.security.core.properties.SecurityProperties;
 import com.github.wangchenning.security.core.properties.WeixinProperties;
+import com.github.wangchenning.security.core.social.WcnConnectView;
 import com.github.wangchenning.security.core.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.social.config.annotation.ConnectionFactoryConfigurer;
 import org.springframework.social.config.annotation.SocialConfigurerAdapter;
 import org.springframework.social.connect.ConnectionFactory;
+import org.springframework.web.servlet.View;
 
 /**
  * 微信登录配置
@@ -39,10 +43,10 @@ public class WeixinAutoConfiguration extends SocialConfigurerAdapter {
 				weixinConfig.getAppSecret());
 	}
 	
-//	@Bean({"connect/weixinConnect", "connect/weixinConnected"})
-//	@ConditionalOnMissingBean(name = "weixinConnectedView")
-//	public View weixinConnectedView() {
-//		return new ImoocConnectView();
-//	}
+	@Bean({"connect/weixinConnect", "connect/weixinConnected"})
+	@ConditionalOnMissingBean(name = "weixinConnectedView")
+	public View weixinConnectedView() {
+		return new WcnConnectView();
+	}
 	
 }
