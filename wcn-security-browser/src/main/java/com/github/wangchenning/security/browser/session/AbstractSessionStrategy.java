@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author zhailiang
+ * @author Musk
  *
  */
 public class AbstractSessionStrategy {
@@ -42,7 +42,6 @@ public class AbstractSessionStrategy {
 
 	/**
 	 * @param invalidSessionUrl
-	 * @param invalidSessionHtmlUrl
 	 */
 	public AbstractSessionStrategy(String invalidSessionUrl) {
 		Assert.isTrue(UrlUtils.isValidRedirectUrl(invalidSessionUrl), "url must start with '/' or with 'http(s)'");
