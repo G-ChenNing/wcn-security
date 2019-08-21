@@ -2,11 +2,11 @@ package com.github.wangchenning.security.browser;
 
 import com.github.wangchenning.security.browser.authentication.WcnAuthenticationFailHandler;
 import com.github.wangchenning.security.browser.authentication.WcnAuthenticationSuccessHandler;
+import com.github.wangchenning.security.core.authentication.AbstractChannelSecurityConfig;
+import com.github.wangchenning.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.github.wangchenning.security.core.properties.SecurityConstants;
 import com.github.wangchenning.security.core.properties.SecurityProperties;
 import com.github.wangchenning.security.core.validate.code.ValidateCodeSecurityConfig;
-import com.github.wangchenning.security.core.authentication.AbstractChannelSecurityConfig;
-import com.github.wangchenning.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.session.InvalidSessionStrategy;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
@@ -38,6 +40,10 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
     @Autowired
     private SpringSocialConfigurer wcnSocialSecurityConfig;
+    @Autowired
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+    @Autowired
+    private InvalidSessionStrategy invalidSessionStrategy;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,26 +51,33 @@ public class BrowserSecurityConfig extends AbstractChannelSecurityConfig {
         
         //        http.httpBasic()
         http.apply(validateCodeSecurityConfig)
-                .and()
+                .   and()
                 .apply(smsCodeAuthenticationSecurityConfig)
-                .and()
+                .   and()
                 .apply(wcnSocialSecurityConfig)
-                .and()
+                .   and()
                 .rememberMe()
                 .tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                 .userDetailsService(userDetailsService)
-                .and()
+                    .and()
                 .sessionManagement()
-                    .invalidSessionUrl("/session/invalid")
+                .invalidSessionStrategy(invalidSessionStrategy)
+                .maximumSessions(securityProperties.getBrowser().getSession().getMaximumSessions())
+                .maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
+                .expiredSessionStrategy(sessionInformationExpiredStrategy)
+                    .and()
                 .and()
                 .authorizeRequests()
-                .antMatchers(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
+                .antMatchers(
+                        SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                         SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                         securityProperties.getBrowser().getLoginPage(),
                         SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX+"/*",
                         securityProperties.getBrowser().getSignUpUrl(),
-                        "/user/regist","/session/invalid").permitAll()
+                        securityProperties.getBrowser().getSession().getSessionInvalidUrl()+".json",
+                        securityProperties.getBrowser().getSession().getSessionInvalidUrl()+".html",
+                        "/user/regist").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

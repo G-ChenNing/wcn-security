@@ -1,7 +1,8 @@
 package com.github.wangchenning.security.core.properties;
 
 public class BrowserProperties {
-    private String loginPage = "/wcn-signin.html";
+    private SessionProperties session = new SessionProperties();
+    private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
     private String signUpUrl = "/wcn-signUp.html";
     private LoginType loginType = LoginType.JSON;
     private int rememberMeSeconds = 3600;
@@ -36,5 +37,13 @@ public class BrowserProperties {
 
     public void setSignUpUrl(String signUpUrl) {
         this.signUpUrl = signUpUrl;
+    }
+
+    public SessionProperties getSession() {
+        return session;
+    }
+
+    public void setSession(SessionProperties session) {
+        this.session = session;
     }
 }

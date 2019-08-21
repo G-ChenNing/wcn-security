@@ -73,11 +73,11 @@ public class BrowserSecurityController {
         return socialUserInfo;
     }
 
-    @GetMapping("/session/invalid")
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public SimpleResponse sessionInvalid() {
-        String message = "session失效";
-        return new SimpleResponse(message);
-    }
+//    @GetMapping("/session/invalid")
+//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+//    public SimpleResponse sessionInvalid() {
+//        String message = "session失效";
+//        return new SimpleResponse(message);
+//    }
 
 }
