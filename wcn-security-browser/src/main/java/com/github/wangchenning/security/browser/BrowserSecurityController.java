@@ -36,8 +36,8 @@ public class BrowserSecurityController {
 
     @Autowired
     private SecurityProperties securityProperties;
-    @Autowired
-    private ProviderSignInUtils providerSignInUtils;
+//    @Autowired
+//    private ProviderSignInUtils providerSignInUtils;
     @Autowired
     private WcnProviderSignInUtils wcnProviderSignInUtils;
 
