@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 
 public class ImageCode extends ValidateCode {
+    private static final long serialVersionUID = -5797378691128498705L;
     private BufferedImage image;
 
 

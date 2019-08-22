@@ -11,6 +11,8 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+//import org.springframework.session.web.http.HeaderHttpSessionStrategy;
+//import org.springframework.session.web.http.HttpSessionStrategy;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -45,5 +47,10 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setOrder(1);
         return filterRegistrationBean;
     }
+
+//    @Bean
+//    public HttpSessionStrategy httpSessionStrategy() {
+//        return new HeaderHttpSessionStrategy();
+//    }
 
 }

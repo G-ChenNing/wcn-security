@@ -5,8 +5,12 @@ spring:
     password: wcnwcn175
 #    url: jdbc:mysql://cl0505.club:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     url: jdbc:mysql://106.37.127.192:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+  redis:
+    host: 106.37.127.192
+    port: 6379
+    password: muskanddennisarefriends
   session:
-    store-type: none
+    store-type: REDIS
   rabbitmq:
     host: 192.168.30.16
     port: 5672

@@ -17,10 +17,11 @@
             <artifactId>wcn-security-core</artifactId>
             <version>${wcn.security.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.session</groupId>
-            <artifactId>spring-session</artifactId>
-            <version>1.3.5.RELEASE</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.session</groupId>-->
+<!--            <artifactId>spring-session</artifactId>-->
+<!--&lt;!&ndash;            <version>1.3.5.RELEASE</version>&ndash;&gt;-->
+<!--            <version>2.0.0.M2</version>-->
+<!--        </dependency>-->
     </dependencies>
 </project>
