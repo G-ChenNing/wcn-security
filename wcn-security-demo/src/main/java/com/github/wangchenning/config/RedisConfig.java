@@ -12,26 +12,25 @@ import java.net.UnknownHostException;
 
 @Configuration
 public class RedisConfig {
-    @Configuration
-    public class MyRedisConfig {
 
-        @Bean
-        @ConditionalOnMissingBean(name = "redisTemplate")
-        public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory)
-                throws UnknownHostException {
-            RedisTemplate<Object, Object> template = new RedisTemplate<>();
-            template.setConnectionFactory(redisConnectionFactory);
-            Jackson2JsonRedisSerializer<Object> ser = new Jackson2JsonRedisSerializer<Object>(Object.class);
-            template.setDefaultSerializer(ser);
-            return template;
-        }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "redisTemplate")
+    public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory)
+            throws UnknownHostException {
+        RedisTemplate<Object, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(redisConnectionFactory);
+        Jackson2JsonRedisSerializer<Object> ser = new Jackson2JsonRedisSerializer<Object>(Object.class);
+        template.setDefaultSerializer(ser);
+        return template;
     }
 
-    //RedisHttpSessionConfiguration session序列化
-    @Bean("springSessionDefaultRedisSerializer")
-    public RedisSerializer<Object> defaultRedisSerializer() {
-        RedisSerializer<Object> objectRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
-        return objectRedisSerializer;
-    }
+
+    //RedisHttpSessionConfiguration session序列化，有问题
+//    @Bean("springSessionDefaultRedisSerializer")
+//    public RedisSerializer<Object> defaultRedisSerializer() {
+//        RedisSerializer<Object> objectRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+//        return objectRedisSerializer;
+//    }
 
 }
