@@ -4,6 +4,7 @@ public class BrowserProperties {
     private SessionProperties session = new SessionProperties();
     private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
     private String signUpUrl = "/wcn-signUp.html";
+    private String signOutUrl;
     private LoginType loginType = LoginType.JSON;
     private int rememberMeSeconds = 3600;
 
@@ -45,5 +46,13 @@ public class BrowserProperties {
 
     public void setSession(SessionProperties session) {
         this.session = session;
+    }
+
+    public String getSignOutUrl() {
+        return signOutUrl;
+    }
+
+    public void setSignOutUrl(String signOutUrl) {
+        this.signOutUrl = signOutUrl;
     }
 }

@@ -63,6 +63,7 @@ wcn:
 #        url: /user,/user/*
     browser:
       signUpUrl: /demo-signUp.html
+      signOutUrl: /demo-logout.html
       session:
         maxSessionsPreventsLogin: true
 #      loginPage: /demo-signIn.html
