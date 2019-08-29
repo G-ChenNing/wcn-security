@@ -1,11 +1,15 @@
 package com.github.wangchenning.security.core.properties;
 
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+
 public class SocialProperties {
     
     private String filterProcessUrl = "/auth";
 
+    @NestedConfigurationProperty
     private QQProperties qq = new QQProperties();
 
+    @NestedConfigurationProperty
     private WeixinProperties weixin = new WeixinProperties();
 
     public QQProperties getQq() {

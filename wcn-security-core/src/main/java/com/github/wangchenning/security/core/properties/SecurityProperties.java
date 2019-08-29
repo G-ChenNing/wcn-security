@@ -1,11 +1,15 @@
 package com.github.wangchenning.security.core.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
-@ConfigurationProperties(prefix = "wcn.security")
+@ConfigurationProperties(prefix = "wcn.security", ignoreUnknownFields = true)
 public class SecurityProperties {
+    @NestedConfigurationProperty
     private BrowserProperties browser = new BrowserProperties();
+    @NestedConfigurationProperty
     private ValidateCodeProperties code = new ValidateCodeProperties();
+    @NestedConfigurationProperty
     private SocialProperties social = new SocialProperties();
 
     public BrowserProperties getBrowser() {

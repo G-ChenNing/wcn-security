@@ -1,6 +1,9 @@
 package com.github.wangchenning.security.core.properties;
 
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
+
 public class BrowserProperties {
+    @NestedConfigurationProperty
     private SessionProperties session = new SessionProperties();
     private String loginPage = SecurityConstants.DEFAULT_LOGIN_PAGE_URL;
     private String signUpUrl = "/wcn-signUp.html";
