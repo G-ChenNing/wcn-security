@@ -19,6 +19,7 @@ public class WcnConnectionStatusView extends AbstractView {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void renderMergedOutputModel(Map<String, Object> map, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         Map<String, List<Connection<?>>> connections = (Map<String, List<Connection<?>>>) map.get("connectionMap");

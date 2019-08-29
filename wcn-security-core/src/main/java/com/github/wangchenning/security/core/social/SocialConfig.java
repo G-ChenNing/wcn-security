@@ -28,14 +28,14 @@ public class SocialConfig extends SocialConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
     @Autowired(required = false)
-    private ConnectionSignUp connectionSignUp;
+    private ConnectionSignUp demoConnectionSignUp;
 
     @Override
     public UsersConnectionRepository getUsersConnectionRepository(ConnectionFactoryLocator connectionFactoryLocator) {
         JdbcUsersConnectionRepository jdbcUsersConnectionRepository = new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator, Encryptors.noOpText());
         jdbcUsersConnectionRepository.setTablePrefix("t_wcn_");
-        if (connectionSignUp != null) {
-            jdbcUsersConnectionRepository.setConnectionSignUp(connectionSignUp);
+        if (demoConnectionSignUp != null) {
+            jdbcUsersConnectionRepository.setConnectionSignUp(demoConnectionSignUp);
         }
         return jdbcUsersConnectionRepository;
     }
