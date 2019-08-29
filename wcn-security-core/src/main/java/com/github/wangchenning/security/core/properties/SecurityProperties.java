@@ -3,6 +3,9 @@ package com.github.wangchenning.security.core.properties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
+/**
+ * @author Musk
+ */
 @ConfigurationProperties(prefix = "wcn.security", ignoreUnknownFields = true)
 public class SecurityProperties {
     @NestedConfigurationProperty
