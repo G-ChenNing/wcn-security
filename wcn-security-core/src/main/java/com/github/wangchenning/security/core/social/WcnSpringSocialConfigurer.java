@@ -10,6 +10,7 @@ public class WcnSpringSocialConfigurer extends SpringSocialConfigurer {
         this.filterProcessUrl = filterProcessUrl;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected <T> T postProcess(T object) {
         SocialAuthenticationFilter socialAuthenticationFilter = (SocialAuthenticationFilter) super.postProcess(object);

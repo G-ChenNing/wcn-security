@@ -1,4 +1,4 @@
-package com.github.wangchenning.security.browser.support;
+package com.github.wangchenning.security.core.support;
 
 public class SocialUserInfo {
     private String providerId;

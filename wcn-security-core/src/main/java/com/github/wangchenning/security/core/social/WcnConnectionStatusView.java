@@ -16,7 +16,7 @@ import java.util.Map;
 @Component("connect/status")
 public class WcnConnectionStatusView extends AbstractView {
 
-    @Autowired
+
     private ObjectMapper objectMapper;
 
     @SuppressWarnings("unchecked")
@@ -29,5 +29,10 @@ public class WcnConnectionStatusView extends AbstractView {
         }
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         httpServletResponse.getWriter().write(objectMapper.writeValueAsString(result));
+    }
+
+    @Autowired
+    public void setObjectMapper(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 }

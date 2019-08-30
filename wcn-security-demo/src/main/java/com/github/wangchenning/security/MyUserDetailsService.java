@@ -7,7 +7,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.social.security.SocialUser;
 import org.springframework.social.security.SocialUserDetails;
 import org.springframework.social.security.SocialUserDetailsService;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyUserDetailsService implements UserDetailsService, SocialUserDetailsService {
     @Autowired
-    private BCryptPasswordEncoder encoder;
+    private PasswordEncoder passwordEncoder;
 
     private Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
@@ -34,7 +34,7 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
 
     private SocialUserDetails buildUser(String userId) {
         //根据用户名查找用户信息
-        String password = encoder.encode("123456");
+        String password = passwordEncoder.encode("123456");
         logger.info("数据库密码{}",password);
         //判断是否被冻结
 //        return new User(s,encoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));

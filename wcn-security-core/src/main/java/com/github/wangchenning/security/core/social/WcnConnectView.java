@@ -15,6 +15,7 @@ public class WcnConnectView extends AbstractView {
         httpServletResponse.setContentType("text/html;charset=UTF-8");
         if (map.get("connection") == null) {
             httpServletResponse.getWriter().write("<h3>解绑成功</h3>");
+            return;
         }
         httpServletResponse.getWriter().write("<h3>绑定成功</h3>");
     }

@@ -1,13 +1,12 @@
 package com.github.wangchenning.security.browser;
 
-import com.github.wangchenning.security.browser.support.SimpleResponse;
-import com.github.wangchenning.security.browser.support.SocialUserInfo;
+import com.github.wangchenning.security.core.support.SocialUserInfo;
 import com.github.wangchenning.security.core.properties.SecurityProperties;
+import com.github.wangchenning.security.core.support.SimpleResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -15,7 +14,6 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.connect.web.WcnProviderSignInUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
