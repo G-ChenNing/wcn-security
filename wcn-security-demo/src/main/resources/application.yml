@@ -68,3 +68,8 @@ wcn:
         maxSessionsPreventsLogin: true
 #      loginPage: /demo-signIn.html
 #      loginType: REDIRECT
+security:
+  oauth2:
+    client:
+      client-id: wcn
+      client-secret: wcnsecret

@@ -39,6 +39,6 @@ public class MyUserDetailsService implements UserDetailsService, SocialUserDetai
         //判断是否被冻结
 //        return new User(s,encoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return new SocialUser(userId, password, true, true, true
-                , true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                , true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_USER"));
     }
 }
