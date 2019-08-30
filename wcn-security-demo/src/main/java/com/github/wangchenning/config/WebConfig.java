@@ -24,10 +24,10 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private TimeInterceptor timeInterceptor;
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(timeInterceptor);
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(timeInterceptor);
+//    }
 
 
 //    @Override
@@ -35,18 +35,18 @@ public class WebConfig implements WebMvcConfigurer {
 //        configurer.
 //    }
 
-    @Bean
-    public FilterRegistrationBean timeFilter() {
-        System.out.println(1);
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        TimeFilter timeFilter = new TimeFilter();
-        filterRegistrationBean.setFilter(timeFilter);
-        List<String> urls = new ArrayList<>();
-        urls.add("/*");
-        filterRegistrationBean.setUrlPatterns(urls);
-        filterRegistrationBean.setOrder(1);
-        return filterRegistrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean timeFilter() {
+//        System.out.println(1);
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        TimeFilter timeFilter = new TimeFilter();
+//        filterRegistrationBean.setFilter(timeFilter);
+//        List<String> urls = new ArrayList<>();
+//        urls.add("/*");
+//        filterRegistrationBean.setUrlPatterns(urls);
+//        filterRegistrationBean.setOrder(1);
+//        return filterRegistrationBean;
+//    }
 
 //    @Bean
 //    public HttpSessionStrategy httpSessionStrategy() {

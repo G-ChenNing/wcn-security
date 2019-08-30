@@ -73,3 +73,4 @@ security:
     client:
       client-id: wcn
       client-secret: wcnsecret
+      registered-redirect-uri: http://pinzhi365.com
